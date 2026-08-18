@@ -109,3 +109,10 @@ test('keeps the featured project CTA separate from its proof points', () => {
   assert.match(html, /\.portfolio-feature-content\{display:flex;flex-direction:column;align-items:flex-start;gap:1\.25rem\}/);
   assert.match(html, /<div class="portfolio-feature-content">/);
 });
+
+test('shows a single Bailey and Cronin testimonial in the spotlight carousel', () => {
+  assert.equal((html.match(/<article class="testimonial-slide/g) ?? []).length, 1);
+  assert.equal((html.match(/class="testimonial-author is-active"/g) ?? []).length, 1);
+  assert.match(html, /Ian Cronin/);
+  assert.doesNotMatch(html, /Placeholder Name/);
+});
