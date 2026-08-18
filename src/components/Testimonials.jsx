@@ -6,6 +6,7 @@ const testimonials = [
     id: 'testimonial-bailey-cronin',
     name: 'Ian Cronin',
     role: 'Bailey & Cronin Chartered Surveyors',
+    website: 'https://baileyandcronin.co.uk/',
     initials: 'IC',
     quote: [
       'I cannot recommend Ed at Focused Minds Creative highly enough.',
@@ -167,7 +168,19 @@ export default function Testimonials() {
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-slate-900">{t.name}</p>
-                  <p className="text-xs text-slate-500">{t.role}</p>
+                  {t.website ? (
+                    <a
+                      href={t.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-medium"
+                      style={{ color: 'var(--color-accent)' }}
+                    >
+                      {t.role} &rarr;
+                    </a>
+                  ) : (
+                    <p className="text-xs text-slate-500">{t.role}</p>
+                  )}
                 </div>
               </footer>
             </article>

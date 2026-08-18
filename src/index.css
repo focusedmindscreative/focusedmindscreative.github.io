@@ -55,6 +55,17 @@ html {
   width: 100%;
 }
 
+@media (max-width: 1023px) {
+  .portfolio-feature-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .portfolio-platforms {
+    justify-content: flex-start;
+  }
+}
+
 .portfolio-platforms {
   display: flex;
   flex-wrap: wrap;
@@ -349,17 +360,27 @@ html {
 }
 
 @media (max-width: 767px) {
+  .portfolio-feature,
+  .portfolio-support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-aftermath-preview {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  .portfolio-phone-frame {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 767px) {
   .testimonial-spotlight {
     grid-template-columns: 1fr;
   }
 
   .testimonial-rail {
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .testimonial-author {
-    width: auto;
-    flex: none;
+    display: none;
   }
 }

@@ -1,3 +1,4 @@
 node_modules
 dist
-.DS_Store.vite/
+.DS_Store
+.vite/
