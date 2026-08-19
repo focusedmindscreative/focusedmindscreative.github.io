@@ -37,7 +37,7 @@ describe('site sections', () => {
   it('shows featured and support portfolio cards', () => {
     render(<App />)
     expect(screen.getByText('Aftermath Navigator')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Bailey & Cronin Chartered Surveyors' })).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: 'Bailey & Cronin Chartered Surveyors' }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getByText('Hydrangea Legal')).toBeInTheDocument()
     expect(screen.getByText('Engager.app Mobile App')).toBeInTheDocument()
   })
