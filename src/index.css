@@ -185,9 +185,11 @@ html {
 }
 
 .portfolio-aftermath-preview {
+  box-sizing: border-box;
   width: 100%;
   aspect-ratio: 3 / 2;
   min-height: 17rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,27 +200,13 @@ html {
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
 }
 
-.portfolio-phone-frame {
-  box-sizing: border-box;
-  height: calc(100% - 2rem);
-  max-width: 54%;
-  aspect-ratio: 440 / 956;
-  padding: 0.5rem;
-  overflow: hidden;
-  border: 6px solid #0f172a;
-  border-radius: 2rem;
-  background: #0f172a;
-  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.26);
-}
-
-.portfolio-phone-frame img {
+.portfolio-aftermath-preview img {
   display: block;
-  width: 100%;
+  width: auto;
   height: 100%;
-  border-radius: 1.45rem;
-  object-fit: cover;
-  filter: blur(16px);
-  transform: scale(1.12);
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(15, 23, 42, 0.26));
 }
 
 .industry-visual {
@@ -544,10 +532,6 @@ html {
   .portfolio-aftermath-preview {
     min-height: 0;
     aspect-ratio: 1 / 1;
-  }
-
-  .portfolio-phone-frame {
-    max-width: 60%;
   }
 }
 

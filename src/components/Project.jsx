@@ -13,14 +13,15 @@ export default function Project() {
         </div>
 
         <article className="portfolio-feature bg-white border border-slate-200 rounded-2xl p-6">
-          <div className="portfolio-aftermath-preview" role="img" aria-label="Blurred preview of the Aftermath Navigator app">
-            <div className="portfolio-phone-frame">
-              <img src="/aftermath-navigator-blurred.png" alt="" />
-            </div>
+          <div className="portfolio-aftermath-preview">
+            <img
+              src="/aftermath-navigator-landing-framed.png"
+              alt="The Aftermath Navigator app home screen showing calming support options"
+            />
           </div>
           <div className="portfolio-feature-content">
             <div className="portfolio-feature-header">
-              <span className="text-sm font-medium badge-accent px-2 py-1 rounded-full">Featured mobile app &mdash; coming soon</span>
+              <span className="text-sm font-medium badge-accent px-2 py-1 rounded-full">Featured mobile app &mdash; now available</span>
               <div className="portfolio-platforms" aria-label="Platforms">
                 {platforms.map((platform) => (
                   <span key={platform} className="portfolio-platform-pill">{platform}</span>
@@ -35,7 +36,7 @@ export default function Project() {
               <li>&bull; Connects users to crisis support, emergency call and text options, and direct contact with Aftermath Support.</li>
             </ul>
             <a
-              href="https://aftermathsupport.org.uk/2026/06/29/aftermath-navigator-coming-soon/"
+              href="https://aftermathsupport.org.uk/2026/08/25/aftermath-navigator-is-here/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 px-5 py-3 rounded-2xl bg-[var(--color-accent)] text-white hover:opacity-90"
