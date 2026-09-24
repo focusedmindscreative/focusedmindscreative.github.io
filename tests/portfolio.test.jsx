@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import App from '../src/App.jsx'
 import Testimonials from '../src/components/Testimonials.jsx'
 
@@ -38,8 +38,15 @@ describe('site sections', () => {
     render(<App />)
     expect(screen.getByText('Aftermath Navigator')).toBeInTheDocument()
     expect(screen.getAllByRole('heading', { name: 'Bailey & Cronin Chartered Surveyors' }).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getByText('Hydrangea Legal')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Hydrangea Legal' })).toBeInTheDocument()
     expect(screen.getByText('Engager.app Mobile App')).toBeInTheDocument()
+  })
+
+  it('links the Hydrangea Legal card to its website', () => {
+    render(<App />)
+    const card = screen.getByRole('heading', { name: 'Hydrangea Legal' }).closest('article')
+    const link = within(card).getByRole('link', { name: /Visit website/ })
+    expect(link).toHaveAttribute('href', 'https://hydrangea.legal')
   })
 
   it('links the Bailey & Cronin card to its testimonial', () => {

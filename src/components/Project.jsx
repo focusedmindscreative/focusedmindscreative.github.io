@@ -81,7 +81,10 @@ export default function Project() {
 
           <article className="bg-white border border-slate-200 rounded-2xl p-5">
             <div className="portfolio-image-frame portfolio-image-frame--white">
-              <img src="/hydrangea-legal-tools-centred.png" alt="Hydrangea Legal Tools logo" className="portfolio-visual" />
+              <div className="hydrangea-lockup" role="img" aria-label="Hydrangea Legal logo">
+                <img src="/hydrangea-legal-mark.svg" alt="" width="96" height="96" />
+                <span aria-hidden="true">Hydrangea Legal</span>
+              </div>
             </div>
             <span className="inline-block mt-5 text-sm font-medium badge-accent px-2 py-1 rounded-full">Legal tech &middot; Coming soon</span>
             <h3 className="mt-3 font-semibold text-slate-900">Hydrangea Legal</h3>
@@ -94,7 +97,15 @@ export default function Project() {
               <li>&bull; MFA, organisation access and verified branded PDF reports</li>
             </ul>
             <div className="portfolio-card-footer">
-              <span className="inline-block mt-5 text-sm font-medium text-slate-500">Website coming soon</span>
+              <a
+                href="https://hydrangea.legal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-5 text-sm font-medium"
+                style={{ color: 'var(--color-accent)' }}
+              >
+                Visit website &rarr;
+              </a>
             </div>
           </article>
 
