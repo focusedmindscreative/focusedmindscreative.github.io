@@ -18,13 +18,32 @@ export default function CookieBanner() {
     return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, reopen)
   }, [])
 
-  // Block page scroll and move focus into the dialog while a choice is pending.
+  // Block page scroll and keep focus inside the dialog while a choice is pending.
   useEffect(() => {
     if (!visible) return
+    const dialog = dialogRef.current
+    const trapFocus = (event) => {
+      if (event.key !== 'Tab' || !dialog) return
+      const buttons = dialog.querySelectorAll('button')
+      const first = buttons[0]
+      const last = buttons[buttons.length - 1]
+      if (!dialog.contains(document.activeElement)) {
+        event.preventDefault()
+        first.focus()
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', trapFocus)
     const previous = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     dialogRef.current?.focus()
     return () => {
+      document.removeEventListener('keydown', trapFocus)
       document.body.style.overflow = previous
     }
   }, [visible])
