@@ -1,5 +1,6 @@
-// Google Analytics 4 measurement ID (format G-XXXXXXXXXX). Set VITE_GA_MEASUREMENT_ID at build time.
-export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || ''
+// Nothing is sent to Google, and the Google script is not even requested, until the
+// visitor accepts. Rejecting (or making no choice) leaves analytics completely off.
+const GA_MEASUREMENT_ID = 'G-KEDTMFHE3T'
 
 const STORAGE_KEY = 'fmc-cookie-consent'
 
@@ -28,33 +29,27 @@ export function clearStoredConsent() {
   }
 }
 
-let scriptLoaded = false
-
-function gtag() {
-  window.dataLayer.push(arguments)
-}
-
-// Called once per page load. Analytics storage defaults to denied.
-export function initAnalytics() {
-  if (!GA_MEASUREMENT_ID || scriptLoaded) return
+function loadAnalytics() {
+  if (document.querySelector('script[data-fmc-ga]')) return
+  delete window[`ga-disable-${GA_MEASUREMENT_ID}`]
   window.dataLayer = window.dataLayer || []
-  gtag('consent', 'default', {
-    analytics_storage: 'denied',
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-  })
-  gtag('js', new Date())
-  gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true })
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments)
+  }
+  window.gtag('js', new Date())
+  window.gtag('config', GA_MEASUREMENT_ID)
   const script = document.createElement('script')
   script.async = true
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`
+  script.dataset.fmcGa = ''
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
   document.head.appendChild(script)
-  scriptLoaded = true
 }
 
 export function applyConsent(value) {
-  if (!GA_MEASUREMENT_ID) return
-  initAnalytics()
-  gtag('consent', 'update', { analytics_storage: value })
+  if (value === 'granted') {
+    loadAnalytics()
+  } else {
+    // If analytics was already started this visit, switch it off again.
+    window[`ga-disable-${GA_MEASUREMENT_ID}`] = true
+  }
 }

@@ -31,3 +31,38 @@ describe('cookie banner', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument()
   })
 })
+
+describe('cookie banner focus trap', () => {
+  beforeEach(() => window.localStorage.clear())
+
+  it('wraps Tab and Shift+Tab between the dialog buttons', () => {
+    render(<CookieBanner />)
+    const reject = screen.getByRole('button', { name: 'Reject' })
+    const accept = screen.getByRole('button', { name: 'Accept' })
+    accept.focus()
+    fireEvent.keyDown(document, { key: 'Tab' })
+    expect(reject).toHaveFocus()
+    fireEvent.keyDown(document, { key: 'Tab', shiftKey: true })
+    expect(accept).toHaveFocus()
+  })
+})
+
+describe('analytics loading', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    document.head.querySelectorAll('script[src*="googletagmanager"]').forEach((s) => s.remove())
+  })
+
+  it('does not request the Google script before or after Reject', () => {
+    render(<CookieBanner />)
+    expect(document.querySelector('script[src*="googletagmanager"]')).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Reject' }))
+    expect(document.querySelector('script[src*="googletagmanager"]')).toBeNull()
+  })
+
+  it('loads the Google script only after Accept', () => {
+    render(<CookieBanner />)
+    fireEvent.click(screen.getByRole('button', { name: 'Accept' }))
+    expect(document.querySelector('script[src*="googletagmanager"]')).not.toBeNull()
+  })
+})
