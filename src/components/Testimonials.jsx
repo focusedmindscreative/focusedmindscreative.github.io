@@ -17,6 +17,21 @@ const testimonials = [
       'A genuine five-star service. Highly recommended.',
     ],
   },
+  {
+    id: 'testimonial-aftermath-support',
+    name: 'Karen Blair',
+    jobTitle: 'CEO',
+    role: 'Aftermath Support',
+    website: 'https://aftermathsupport.org.uk/',
+    initials: 'KB',
+    quote: [
+      'Working with Ed to develop our Aftermath Navigator app has been a positive experience from the very start. Ed took the time to understand not only what we wanted the app to do, but also the people we support and the reasons behind the project.',
+      'Given the sensitive nature of supporting people affected by serious and fatal road traffic collisions, it was essential to work with someone who approached the project with empathy, patience and understanding. Ed listened carefully to our needs, helped us explore ideas and never made us feel pressured into making decisions.',
+      'As a small charity with no in-house technical expertise, we found the whole development process straightforward and accessible. Ed communicated clearly throughout, was responsive to questions and provided practical advice that helped turn our ideas into a solution that truly works.',
+      "The project has felt like a real partnership, combining our experience of supporting people affected by road trauma with Ed's technical expertise. The resulting app has enabled us to extend our support beyond our one-to-one services, giving road crash victims access to guidance and resources whenever and wherever they need them.",
+      'We are incredibly proud of what we have achieved together and are delighted to be continuing our work with Ed on the next phase of Navigator.',
+    ],
+  },
 ]
 
 const DURATION = 8000
@@ -168,7 +183,10 @@ export default function Testimonials() {
                   {t.initials}
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">{t.name}</p>
+                  <p className="text-sm font-semibold text-slate-900">
+                    {t.name}
+                    {t.jobTitle ? <span className="font-normal text-slate-500">, {t.jobTitle}</span> : null}
+                  </p>
                   {t.website ? (
                     <a
                       href={t.website}
