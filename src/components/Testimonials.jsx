@@ -7,6 +7,7 @@ const testimonials = [
     name: 'Ian Cronin',
     role: 'Bailey & Cronin Chartered Surveyors',
     website: 'https://baileyandcronin.co.uk/',
+    project: 'Company Website',
     initials: 'IC',
     quote: [
       'I cannot recommend Ed at Focused Minds Creative highly enough.',
@@ -23,6 +24,7 @@ const testimonials = [
     jobTitle: 'CEO',
     role: 'Aftermath Support',
     website: 'https://aftermathsupport.org.uk/',
+    project: 'Aftermath Navigator Mobile App',
     initials: 'KB',
     quote: [
       'Working with Ed to develop our Aftermath Navigator app has been a positive experience from the very start. Ed took the time to understand not only what we wanted the app to do, but also the people we support and the reasons behind the project.',
@@ -158,6 +160,7 @@ export default function Testimonials() {
               aria-hidden={i !== current}
             >
               <h3 className="text-sm font-semibold text-slate-900">{t.role}</h3>
+              <p className="text-xs text-slate-500 mt-0.5">Project: {t.project}</p>
               <div className="flex items-center gap-1 mt-2 mb-4" aria-label="Five star rating">
                 {Array.from({ length: 5 }).map((_, s) => (
                   <Star
